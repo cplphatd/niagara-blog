@@ -4,8 +4,17 @@ package com.codeup.models;
  * Created by David on 2/8/17.
  */
 public class Post {
+    private long id;
     private String title;
     private String body;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;

@@ -73,7 +73,7 @@ public class HelloWorldController {
             model.addAttribute("matchMessage", "Try again...");
         }
 
-        return "/roll-dice/{userGuess}";
+        return "/roll-dice/results";
     }
 
     private int generateRandomNumber () {

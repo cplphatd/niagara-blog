@@ -39,16 +39,17 @@ public class PostsController {
     }
 
     @GetMapping("/posts/{id}")
-    public String viewPost (@PathVariable int id, Model model) {
+    public String viewPost (@PathVariable long id, Model model) {
         Post post = new Post();
         post.setTitle("Test");
         post.setBody("Test body.");
+        post.setId(id);
 
         model.addAttribute("title", post.getTitle());
         model.addAttribute("body", post.getBody());
-        model.addAttribute("id", id);
+        model.addAttribute("id", post.getId());
 
-        return "/posts/{id}";
+        return "/posts/show";
     }
 
     @GetMapping("/posts/create")

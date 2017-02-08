@@ -57,7 +57,7 @@ public class HelloWorldController {
 
     @GetMapping("/roll-dice")
     public String rollDice () {
-        return "roll-dice";
+        return "/roll-dice/roll-dice";
     }
 
     @GetMapping("/roll-dice/{userGuess}")

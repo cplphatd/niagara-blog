@@ -1,6 +1,8 @@
 package com.codeup.controllers;
 
 import com.codeup.models.Post;
+import com.codeup.services.PostService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,21 +19,12 @@ import java.util.List;
 @Controller
 public class PostsController {
 
+    @Autowired
+    PostService postService;
+
     @GetMapping("/posts")
     public String getPosts (Model model) {
-        List<Post> posts = new ArrayList<>();
-
-        Post postOne = new Post();
-        postOne.setTitle("Test 1");
-        postOne.setBody("Test body 1");
-
-        posts.add(postOne);
-
-        Post postTwo = new Post();
-        postTwo.setTitle("Test 2");
-        postTwo.setBody("Test body 2");
-
-        posts.add(postTwo);
+        List<Post> posts = postService.showAllPosts();
 
         model.addAttribute("posts", posts);
 
@@ -40,14 +33,9 @@ public class PostsController {
 
     @GetMapping("/posts/{id}")
     public String viewPost (@PathVariable long id, Model model) {
-        Post post = new Post();
-        post.setTitle("Test");
-        post.setBody("Test body.");
-        post.setId(id);
+        Post post = postService.findPostByID(id);
 
-        model.addAttribute("title", post.getTitle());
-        model.addAttribute("body", post.getBody());
-        model.addAttribute("id", post.getId());
+        model.addAttribute("post", post);
 
         return "/posts/show";
     }

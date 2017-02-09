@@ -23,13 +23,11 @@ public class PostService {
     }
 
     public Post findPostByID (long id) {
-        posts = createListOfPosts();
 
         return posts.get((int)(id - 1));
     }
 
     public void savePost (@ModelAttribute Post post) {
-        posts = createListOfPosts();
 
         posts.add(post);
         long id = (long) (posts.indexOf(post) + 1);

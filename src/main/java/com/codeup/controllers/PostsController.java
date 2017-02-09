@@ -48,10 +48,25 @@ public class PostsController {
     }
 
     @PostMapping("/posts/create")
-    public String createPost (@ModelAttribute Post post, Model model) {
+    public String createPost (@ModelAttribute Post post) {
 
         postService.savePost(post);
 
         return "/posts/create";
     }
-}
+
+    @GetMapping("/posts/{id}/edit")
+    public String viewEditForm (@PathVariable long id, Model model) {
+
+        Post post = postService.findPostByID(id);
+
+        model.addAttribute(post);
+
+        return "/posts/edit";
+    }
+
+    @PostMapping("/posts/{id}/edit")
+    public String updatePost (@PathVariable long id, @ModelAttribute Post post) {
+        return null;
+    }
+ }

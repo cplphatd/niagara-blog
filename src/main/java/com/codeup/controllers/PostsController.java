@@ -1,14 +1,11 @@
 package com.codeup.controllers;
 
 import com.codeup.models.Post;
-import com.codeup.services.PostService;
+import com.codeup.repositories.Posts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by David on 2/7/17.
@@ -17,14 +14,12 @@ import java.util.List;
 public class PostsController {
 
     @Autowired
-    PostService postService;
+    Posts postsDao;
 
     @GetMapping("/posts")
     public String getPosts (Model model) {
 
-        List<Post> posts = postService.showAllPosts();
-
-        model.addAttribute("posts", posts);
+        model.addAttribute("posts", postsDao.findAll());
 
         return "/posts/index";
     }
@@ -32,7 +27,7 @@ public class PostsController {
     @GetMapping("/posts/{id}")
     public String viewPost (@PathVariable long id, Model model) {
 
-        Post post = postService.findPostByID(id);
+        Post post = postsDao.findOne(id);
 
         model.addAttribute("post", post);
 
@@ -50,15 +45,15 @@ public class PostsController {
     @PostMapping("/posts/create")
     public String createPost (@ModelAttribute Post post) {
 
-        postService.savePost(post);
+        postsDao.save(post);
 
-        return "/posts/create";
+        return "redirect:/posts";
     }
 
     @GetMapping("/posts/{id}/edit")
     public String viewEditForm (@PathVariable long id, Model model) {
 
-        Post post = postService.findPostByID(id);
+        Post post = postsDao.findOne(id);
 
         model.addAttribute(post);
 

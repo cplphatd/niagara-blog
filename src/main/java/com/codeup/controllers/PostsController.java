@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class PostsController {
 
     @Autowired
-    Posts postsDao;
+    private Posts postsDao;
 
     @GetMapping("/posts")
     public String getPosts (Model model) {
@@ -61,7 +61,10 @@ public class PostsController {
     }
 
     @PostMapping("/posts/{id}/edit")
-    public String updatePost (@PathVariable long id, @ModelAttribute Post post) {
-        return null;
+    public String updatePost (@ModelAttribute Post post) {
+
+        postsDao.save(post);
+
+        return "redirect:/posts/{id}";
     }
  }

@@ -19,6 +19,10 @@ public class PostsController {
     @GetMapping("/posts")
     public String getPosts (Model model) {
 
+//        for (Post post : postsDao.findByTitle("%test%")) {
+//            System.out.println(post.getTitle());
+//        }
+
         model.addAttribute("posts", postsDao.findAll());
 
         return "/posts/index";

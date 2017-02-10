@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <meta charset="UTF-8"/>
+        <div th:include="fragments/header :: header"></div>
         <title>Create a new post!</title>
     </head>
     <body>
 
         <div th:include="fragments/navbar :: navbar"></div>
 
-        <form action="/posts/create" method="post" th:object="${post}">
-            <h3>Title:</h3>
-            <input type="text" th:field="*{title}"/>
-            <h5>Body:</h5>
-            <textarea th:field="*{body}"/>
-            <br/>
-            <button type="submit" class="btn btn-success">Create Post!</button>
-        </form>
+        <div class="container">
 
+            <form action="/posts/create" method="post" th:object="${post}">
+                <h3>Title:</h3>
+                <input type="text" th:field="*{title}"/>
+                <h5>Body:</h5>
+                <textarea th:field="*{body}"/>
+                <br/>
+                <button type="submit" class="btn btn-success">Create Post!</button>
+            </form>
+
+        </div>
+        <div th:include="fragments/footer :: footer"></div>
     </body>
 </html>

@@ -1,7 +1,9 @@
 package com.codeup.controllers;
 
 import com.codeup.models.Post;
+import com.codeup.models.User;
 import com.codeup.repositories.Posts;
+import com.codeup.repositories.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,12 +18,11 @@ public class PostsController {
     @Autowired
     private Posts postsDao;
 
+    @Autowired
+    private Users usersDao;
+
     @GetMapping("/posts")
     public String getPosts (Model model) {
-
-//        for (Post post : postsDao.findByTitle("%test%")) {
-//            System.out.println(post.getTitle());
-//        }
 
         model.addAttribute("posts", postsDao.findAll());
 
@@ -48,6 +49,11 @@ public class PostsController {
 
     @PostMapping("/posts/create")
     public String createPost (@ModelAttribute Post post) {
+        User user = new User();
+
+        user = usersDao.findOne((long) 1);
+
+        post.setUser(user);
 
         postsDao.save(post);
 

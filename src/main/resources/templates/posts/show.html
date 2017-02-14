@@ -14,7 +14,7 @@
                 <h1 th:text="*{title}"></h1>
                 <p th:text="*{body}"></p>
                 <p>ID#: <span th:text="*{id}"></span></p>
-                <p>Created by: <span th:text="*{user.email}"></span></p>
+                <!--<p>Email: <span th:text="*{email}"></span></p>-->
 
                 <form th:attr="action=${'/posts/' + post.id + '/delete'}" method="post">
 

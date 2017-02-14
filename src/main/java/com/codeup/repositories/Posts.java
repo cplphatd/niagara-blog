@@ -10,6 +10,7 @@ import java.util.List;
 /**
  * Created by David on 2/9/17.
  */
+
 @Repository
 public interface Posts extends CrudRepository<Post, Long> {
 

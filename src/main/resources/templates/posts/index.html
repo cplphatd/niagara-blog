@@ -12,7 +12,7 @@
             <div th:each="post : ${posts}">
                 <a th:attr="href=${'/posts/' + post.id}"><h1 th:text="${post.title}"></h1></a>
                 <p th:text="${post.body}"></p>
-                <p>By: <span th:text="${post.user.username}"></span></p>
+                <!--<p>By: <span th:text="${post.user.username}"></span></p>-->
             </div>
         </div>
 

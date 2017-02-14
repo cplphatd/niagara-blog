@@ -10,7 +10,7 @@
 
         <div class="container">
 
-            <form th:attr="action=${'/posts/' + post.id + '/edit'}" method="post"
+            <form th:action="@{'/posts/' + *{id} + '/edit'}" th:method="POST"
                   th:object="${post}">
                 <h3>Title:</h3>
                 <input type="text" th:field="*{title}"/>

@@ -24,6 +24,11 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="/register">Register</a></li>
                         <li><a href="/login">Login</a></li>
+                        <li>
+                            <form th:action="@{/logout}" th:method="POST">
+                                <button class="btn btn-danger">Logout</button>
+                            </form>
+                        </li>
                     </ul>
 
                 </div>

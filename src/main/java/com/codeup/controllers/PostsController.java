@@ -49,9 +49,7 @@ public class PostsController {
 
     @PostMapping("/posts/create")
     public String createPost (@ModelAttribute Post post) {
-        User user = new User();
-
-        user = usersDao.findOne((long) 1);
+        User user = usersDao.findOne((long) 1);
 
         post.setUser(user);
 
